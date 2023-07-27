@@ -12,7 +12,11 @@ import streamlit as st
 from streamlit_chat import message
 from func import *
 import os
-api_key = os.environ.get('OPENAI_API_KEY')
+from dotenv import load_dotenv
+from pathlib import Path
+dotenv_path = Path('.env')
+load_dotenv(dotenv_path=dotenv_path)
+access_token = os.environ["OPENAI_API_KEY"]
 st.set_page_config(page_title="AU-Bot")
 st.title('Admissions Guide')
 st.subheader("Chatbot with Langchain, OpenAI,FAISS, HF and Streamlit")
@@ -22,7 +26,7 @@ if 'responses' not in st.session_state:
 if 'requests' not in st.session_state:
     st.session_state['requests'] = []
 
-llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key="")
+llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=access_token)
 
 if 'buffer_memory' not in st.session_state:
             st.session_state.buffer_memory=ConversationBufferWindowMemory(k=3,return_messages=True)
