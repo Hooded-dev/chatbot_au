@@ -1,0 +1,6 @@
+streamlit
+streamlit_chat
+langchain
+sentence_transformers
+faiss-cpu
+unstructured[local-inference]
